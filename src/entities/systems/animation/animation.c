@@ -18,7 +18,7 @@ Animation create_animation(Texture2D atlas, int fps, Rectangle *rectangles, int 
 
     Rectangle *rects_memory = (Rectangle*)(malloc(sizeof(Rectangle) * length));
     if (rects_memory == NULL) {
-        TraceLog(LOG_FATAL, "animation.c : falied allocation of memory for rectangles");
+        TraceLog(LOG_FATAL, "animation.c : failed allocation of memory for rectangles");
         animation.rectangles_length = 0;
         return animation;
     }

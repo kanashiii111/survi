@@ -13,7 +13,11 @@ void create_chunk(GameContext *gc, WorldManager* wm, Vector2 chunk_coords){
     }
     Chunk chunk = { 0 };
     chunk.chunk_coords = chunk_coords;
+    chunk.entities = malloc(sizeof(Entity) * 16);
+    chunk.entity_count = 0;
+    chunk.entity_capacity = 16;
     generate_terrain(&chunk, wm->config);
+    generate_entities(&chunk, wm->config);
     wm->rendered_chunks[wm->rendered_chunks_count++] = chunk;
 };
 
@@ -30,7 +34,7 @@ int compare_chunks(const void *a, const void *b) {
 void render_chunks(GameContext *gc, WorldManager *wm) {
     qsort(wm->rendered_chunks, wm->rendered_chunks_count, sizeof(Chunk), compare_chunks);
     for (int i = 0; i < wm->rendered_chunks_count; i++) {
-        render_chunk(&wm->rendered_chunks[i], gc->tile_atlas);
+        render_chunk(&wm->rendered_chunks[i], gc->tile_atlas, gc->entity_atlas);
     }
 }
 
