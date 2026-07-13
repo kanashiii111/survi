@@ -11,7 +11,8 @@ LDFLAGS = -Lthird_party/lib -lraylib -lgdi32 -lwinmm
 SOURCES = \
     src/main.c \
     src/entities/player/player.c \
-    src/entities/player/systems/animation/animation.c \
+    src/entities/cat/cat.c \
+    src/entities/systems/animation/animation.c \
     src/managers/game_context/game_context.c \
     src/managers/world_manager/world_manager.c \
     src/systems/chunk_streamer/chunk_streamer.c \

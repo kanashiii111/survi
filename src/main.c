@@ -1,6 +1,7 @@
 #define FNL_IMPL
 #include "../third_party/include/raylib.h"
 #include "entities/player/player.h"
+#include "entities/cat/cat.h"
 #include "managers/game_context/game_context.h"
 #include "managers/world_manager/world_manager.h"
 #include "systems/chunk_streamer/chunk_streamer.h"
@@ -25,12 +26,15 @@ int main(void) {
     ChunkStreamer cs;
     WorldConfig wc;
     Player *player;
+    Cat cat = (Cat){ 0 };
 
     Texture2D tile_atlas = LoadTexture("src/resources/tileset.png");
     Texture2D player_atlas = LoadTexture("src/resources/player.png");
+    Texture2D cat_atlas = LoadTexture("src/resources/cat.png");
     gc = (GameContext){ 0 };
     gc.tile_atlas = &tile_atlas;
     gc.player_atlas = &player_atlas;
+    gc.cat_atlas = &cat_atlas;
 
     fnl_state noise = fnlCreateState();
     wc.noise = &noise;
@@ -44,6 +48,7 @@ int main(void) {
 
 
     init_player(&gc, player);
+    init_cat(&gc, &cat);
     init_cs(&gc, &wm, &cs, player);
 
 
@@ -63,6 +68,7 @@ int main(void) {
 
                 render_chunks(&gc, &wm);
                 render_player(player);
+                render_cat(&cat);
 
             EndMode2D();
 
