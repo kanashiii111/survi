@@ -5,6 +5,7 @@
 
 typedef struct GameContext {
     Texture2D *tile_atlas;
+    Texture2D *entity_atlas;
     Texture2D *player_atlas;
     Texture2D *cat_atlas;
 } GameContext;

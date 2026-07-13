@@ -29,10 +29,12 @@ int main(void) {
     Cat cat = (Cat){ 0 };
 
     Texture2D tile_atlas = LoadTexture("src/resources/tileset.png");
+    Texture2D entity_atlas = LoadTexture("src/resources/entities.png");
     Texture2D player_atlas = LoadTexture("src/resources/player.png");
     Texture2D cat_atlas = LoadTexture("src/resources/cat.png");
     gc = (GameContext){ 0 };
     gc.tile_atlas = &tile_atlas;
+    gc.entity_atlas = &entity_atlas;
     gc.player_atlas = &player_atlas;
     gc.cat_atlas = &cat_atlas;
 
@@ -59,12 +61,32 @@ int main(void) {
         process_player(player);
         process_cs(&gc, &wm, &cs, player);
 
-        // Draw
+        // Render to the texture
+
+        // BeginTextureMode(target);
+        //     ClearBackground(RAYWHITE);
+        //     // render_chunks_tiles();
+        // EndTextureMode();
+
+        // BeginTextureMode(target);
+        //     // render_chunks_entities();
+        // EndTextureMode();
+
+        // BeginTextureMode(target);
+        //     // render_player();
+        // EndTextureMode();
+
+
+        // Draw to screen
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
 
             BeginMode2D(*player->camera);
+
+                // draw_chunks_tiles();
+                // draw_chunks_entities();
+                // draw_player();
 
                 render_chunks(&gc, &wm);
                 render_player(player);

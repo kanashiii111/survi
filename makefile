@@ -17,6 +17,8 @@ SOURCES = \
     src/managers/world_manager/world_manager.c \
     src/systems/chunk_streamer/chunk_streamer.c \
     src/systems/world_generation/chunk/chunk.c \
+    src/systems/world_generation/chunk/entity/entity.c \
+    src/systems/world_generation/chunk/entity/entity_definition/entity_definition.c \
     src/systems/world_generation/chunk/tile/tile.c \
     src/systems/world_generation/chunk/tile/tile_definition/tile_definition.c \
     src/systems/world_generation/generation_pass/generation_pass.c \
@@ -36,3 +38,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 	@if exist "$(BUILDDIR)" rmdir /s /q "$(BUILDDIR)"
+
+run: clean all
+	.\build\main

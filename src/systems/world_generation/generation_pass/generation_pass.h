@@ -8,6 +8,7 @@
 static const float WATER_THRESHOLD = -0.1;
 static const float DIRT_THRESHOLD = 0.0;
 
-void generate_terrain(Chunk* chunk, WorldConfig* config);
+void generate_terrain(Chunk *chunk, WorldConfig *config);
+void generate_entities(Chunk *chunk, WorldConfig *config);
 
 #endif
