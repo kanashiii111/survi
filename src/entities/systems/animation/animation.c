@@ -1,15 +1,15 @@
 #include "animation.h"
 #include <stdlib.h>
 
-void draw_player_animation(PlayerAnimation animation, Rectangle dest, Vector2 origin, float rotation, Color tint) {
+void draw_animation(Animation animation, Rectangle dest, Vector2 origin, float rotation, Color tint) {
     int index = (int)(GetTime() * animation.fps) % animation.rectangles_length;
 
     Rectangle source = animation.rectangles[index];
     DrawTexturePro(animation.atlas, source, dest, origin, rotation, tint);
 }
 
-PlayerAnimation create_player_animation(Texture2D atlas, int fps, Rectangle *rectangles, int length) {
-    PlayerAnimation animation = {
+Animation create_animation(Texture2D atlas, int fps, Rectangle *rectangles, int length) {
+    Animation animation = {
         .atlas = atlas,
         .fps = fps,
         .rectangles_length = length,
@@ -32,6 +32,6 @@ PlayerAnimation create_player_animation(Texture2D atlas, int fps, Rectangle *rec
     return animation;
 }
 
-void dispose_player_animation(PlayerAnimation animation) {
+void dispose_animation(Animation animation) {
     free(animation.rectangles);
 }
