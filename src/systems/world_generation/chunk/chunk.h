@@ -19,15 +19,7 @@ typedef struct Chunk {
     int entity_capacity;
 } Chunk;
 
-// TEXTURE MODE
-
-// void draw_chunks_tiles(Chunk *chunk, Texture2D *tile_atlas);
-// void draw_chunks_entities();
-
-// DRAW TO SCREEN MODE
-
-void render_chunk(Chunk *chunk, Texture2D *tile_atlas, Texture2D *entity_atlas);
-
+void render_chunk_tiles(Chunk *chunk, Texture2D *tile_atlas);
 
 // UTIL
 

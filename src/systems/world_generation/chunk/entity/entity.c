@@ -11,5 +11,8 @@ void render_entity(Texture2D *atlas, Entity *entity) {
         default:
             return;
     }
-    DrawTextureRec(*atlas, source, grid_to_screen(entity_coords.x, entity_coords.y), WHITE);
+    Vector2 gridPos = grid_to_screen(entity_coords.x, entity_coords.y);
+    Vector2 drawPos = grid_to_draw_pos(entity_coords, source.width, source.height);
+    DrawCircleV(gridPos, 1.0f, BLACK);
+    DrawTextureRec(*atlas, source, drawPos, WHITE);
 }

@@ -1,5 +1,4 @@
 #include "player.h"
-#include "../systems/animation/animation.h"
 
 void init_player(GameContext *gc, Player *player){
     Camera2D *camera = malloc(sizeof(Camera2D));
@@ -50,7 +49,7 @@ void process_player(Player *player) {
     process_input(player);
     process_states(player);
     player->position = (Vector2){player->position.x += player->velocity.x, player->position.y += player->velocity.y};
-    player->camera->target = player->position;
+    player->camera->target = (Vector2){player->position.x, player->position.y - 14};
 }
 
 void process_input(Player *player) {
@@ -73,8 +72,23 @@ void process_states(Player *player) {
 }
 
 void render_player(Player *player) {
-    Rectangle dest = (Rectangle){player->position.x, player->position.y, 14, 22};
-    Vector2 origin = { 0 };
+    float spriteW = 14;
+    float spriteH = 22;
+    Rectangle dest = {
+        player->position.x - spriteW / 2.0f,
+        player->position.y - spriteH,
+        spriteW,
+        spriteH
+    };
+    Vector2 footPos = {player->position.x, player->position.y};
+
+    DrawCircleV(footPos, 1.0f, BLUE);
+
+    char text[64];
+    sprintf(text, "X:%.0f Y:%.0f", player->position.x, player->position.y);
+    DrawText(text, footPos.x, footPos.y - spriteH - 10, 10, BLACK);
+
+    Vector2 origin = {0};
     if (player->is_flipped) {
         draw_animation(player->flipped_animations[player->state], dest, origin, 0, WHITE);
     } else {

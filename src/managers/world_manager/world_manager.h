@@ -16,10 +16,20 @@ typedef struct WorldManager {
     unsigned int rendered_chunks_count;
 } WorldManager;
 
+struct EntityRef {
+    int depth;
+    int type;
+
+    int chunk_idx;
+    int entity_idx;
+};
+
 Chunk* get_chunk(WorldManager* wm, Vector2 chunk_coords);
 void create_chunk(GameContext *gc, WorldManager* wm, Vector2 chunk_coords);
 void delete_chunk(GameContext *gc, WorldManager* wm, Vector2 chunk_coords);
-void render_chunks(GameContext *gc, WorldManager *wm);
+
+void wm_render_tiles(GameContext *gc, WorldManager* wm);
+void wm_render_entities(GameContext *gc, WorldManager *wm);
 
 Vector2 player_pos_to_chunk_coords(Player *player);
 
