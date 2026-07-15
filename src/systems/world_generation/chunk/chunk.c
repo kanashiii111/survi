@@ -1,15 +1,13 @@
 #include "chunk.h"
 #include "entity/entity.h"
+#include "tile/tile.h"
 #include <stdlib.h>
 
-void render_chunk(Chunk *chunk, Texture2D *tile_atlas, Texture2D *entity_atlas) {
+void render_chunk_tiles(Chunk *chunk, Texture2D *tile_atlas) {
     for (int i = 0; i < CHUNK_SIZE; i++) {
         for (int j = 0; j < CHUNK_SIZE; j++) {
             render_tile(tile_atlas, &chunk->tiles[i][j]);
         }
-    }
-    for (int i = 0; i < chunk->entity_count; i++) {
-        render_entity(entity_atlas, &chunk->entities[i]);
     }
 }
 

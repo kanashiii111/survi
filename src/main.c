@@ -53,6 +53,8 @@ int main(void) {
     init_cat(&gc, &cat);
     init_cs(&gc, &wm, &cs, player);
 
+    RenderTexture2D tiles = LoadRenderTexture(screenWidth, screenHeight);
+    RenderTexture2D entities = LoadRenderTexture(screenWidth, screenHeight);
 
     // Main game loop
     while (!WindowShouldClose()) {
@@ -63,36 +65,41 @@ int main(void) {
 
         // Render to the texture
 
-        // BeginTextureMode(target);
-        //     ClearBackground(RAYWHITE);
-        //     // render_chunks_tiles();
-        // EndTextureMode();
+        BeginTextureMode(tiles);
+            ClearBackground(BLANK);
+            BeginMode2D(*player->camera);
+                wm_render_tiles(&gc, &wm);
+            EndMode2D();
+        EndTextureMode();
 
-        // BeginTextureMode(target);
-        //     // render_chunks_entities();
-        // EndTextureMode();
-
-        // BeginTextureMode(target);
-        //     // render_player();
-        // EndTextureMode();
-
+        BeginTextureMode(entities);
+            ClearBackground(BLANK);
+            BeginMode2D(*player->camera);
+                wm_render_entities(&gc, &wm);
+            EndMode2D();
+        EndTextureMode();
 
         // Draw to screen
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLANK);
 
-            BeginMode2D(*player->camera);
+            //BeginMode2D(*player->camera);
 
+            DrawTextureRec(tiles.texture, (Rectangle){0, 0, tiles.texture.width, -tiles.texture.height}, (Vector2) {0, 0}, WHITE);
+            DrawTextureRec(entities.texture, (Rectangle){0, 0, entities.texture.width, -entities.texture.height}, (Vector2) {0, 0}, WHITE);
+            // BeginMode2D(*player->camera);
+            //     wm_render_entities(&gc, &wm);
+            // EndMode2D();
                 // draw_chunks_tiles();
                 // draw_chunks_entities();
                 // draw_player();
 
-                render_chunks(&gc, &wm);
-                render_player(player);
-                render_cat(&cat);
+                // render_chunks(&gc, &wm);
+                // render_player(player);
+                // render_cat(&cat);
 
-            EndMode2D();
+            //EndMode2D();
 
 
         EndDrawing();
@@ -101,6 +108,8 @@ int main(void) {
     // De-Initialization
 
     dispose_player(player);
+    UnloadRenderTexture(tiles);
+    UnloadRenderTexture(entities);
 
     CloseWindow();
 

@@ -6,6 +6,11 @@ Vector2 grid_to_screen(int gridX, int gridY) {
     return (Vector2){screenX, screenY};
 }
 
+Vector2 grid_to_draw_pos(Vector2 gridPos, float spriteW, float spriteH) {
+    Vector2 screen = grid_to_screen(gridPos.x, gridPos.y);
+    return (Vector2){screen.x - spriteW / 2.0f, screen.y - spriteH};
+}
+
 void render_tile(Texture2D* atlas, Tile* tile) {
     Rectangle source = (Rectangle){0, 0, 0, 0};
     Vector2 tile_coords = tile->tile_coords;
@@ -24,5 +29,6 @@ void render_tile(Texture2D* atlas, Tile* tile) {
         case WATER:
             source = (Rectangle){2, 33, 29, 62};
     }
-    DrawTextureRec(*atlas, source, grid_to_screen(tile_coords.x, tile_coords.y), WHITE);
+    Vector2 gridPos = grid_to_screen(tile_coords.x, tile_coords.y);
+    DrawTextureRec(*atlas, source, gridPos, WHITE);
 }

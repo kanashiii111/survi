@@ -4,6 +4,7 @@
 #include "../../../../../third_party/include/raylib.h"
 #include "entity_definition/entity_definition.h"
 #include "../tile/tile.h"
+#include <stdio.h>
 
 typedef struct Entity {
     Rectangle collision_box;

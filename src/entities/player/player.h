@@ -4,7 +4,9 @@
 #include "../../../third_party/include/raylib.h"
 #include "../systems/animation/animation.h"
 #include "../../managers/game_context/game_context.h"
+#include "../../systems/world_generation/chunk/tile/tile.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #define PLAYER_SPEED 2
 
