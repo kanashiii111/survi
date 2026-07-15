@@ -3,7 +3,6 @@
 #include "../../systems/world_generation/chunk/entity/entity.h"
 #include "raylib.h"
 #include "systems/world_generation/chunk/chunk.h"
-#include <stdlib.h>
 
 bool can_draw = false;
 
@@ -127,15 +126,25 @@ bool can_interact(Player *player, Entity *entity) {
 }
 
 Entity *get_interacted_entity(Player *player, WorldManager *wm) {
+    Entity *best_entity = NULL;
+    Chunk *best_chunk = NULL;
+    float best_y = -1e9;
+
     for (int i = 0; i < wm->rendered_chunks_count; i++) {
         for (int j = 0; j < wm->rendered_chunks[i].entity_count; j++) {
-            if (can_interact(player, &wm->rendered_chunks[i].entities[j])) {
-                player->interacted_entity_chunk = &wm->rendered_chunks[i];
-                return &wm->rendered_chunks[i].entities[j];
+            Entity *entity = &wm->rendered_chunks[i].entities[j];
+            if (can_interact(player, entity) && entity->entity_coords.y > best_y) {
+                best_entity = entity;
+                best_chunk = &wm->rendered_chunks[i];
+                best_y = entity->entity_coords.y;
             }
         }
     }
-    return NULL;
+
+    if (best_entity != NULL) {
+        player->interacted_entity_chunk = best_chunk;
+    }
+    return best_entity;
 }
 
 // <----------------DEBUG---------------->

@@ -12,7 +12,7 @@ typedef struct Entity {
 
 void render_entity(Texture2D *atlas, Entity *entity);
 
-// DEBUG
+// <----------------DEBUG---------------->
 
 void draw_debug_shapes(Entity *entity, Color circle_color, Color interact_box_color);
 

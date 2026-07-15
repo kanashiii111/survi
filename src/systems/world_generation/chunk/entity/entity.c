@@ -17,6 +17,8 @@ void render_entity(Texture2D *atlas, Entity *entity) {
     DrawTextureRec(*atlas, source, drawPos, WHITE);
 }
 
+// <----------------DEBUG---------------->
+
 void draw_debug_shapes(Entity *entity, Color circle_color, Color interact_box_color) {
     Rectangle source = (Rectangle){0, 0, 0, 0};
     Vector2 gridPos = grid_to_screen(entity->entity_coords.x, entity->entity_coords.y);
