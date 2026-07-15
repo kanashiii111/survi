@@ -1,9 +1,8 @@
-#ifndef TILE
-#define TILE
+#ifndef TILE_H
+#define TILE_H
 
-#include "../../../../../third_party/include/raylib.h"
+#include "raylib.h"
 #include "tile_definition/tile_definition.h"
-#include <stdio.h>
 
 #define TILE_WIDTH 28
 #define TILE_HEIGHT 14

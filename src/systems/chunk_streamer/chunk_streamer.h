@@ -1,10 +1,11 @@
 #ifndef CHUNK_STREAMER_H
 #define CHUNK_STREAMER_H
 
-#include "../../../third_party/include/raylib.h"
-#include "../../entities/player/player.h"
-#include "../../managers/world_manager/world_manager.h"
-#include "../../../third_party/include/raymath.h"
+#include "raylib.h"
+
+typedef struct GameContext GameContext;
+typedef struct WorldManager WorldManager;
+typedef struct Player Player;
 
 typedef struct ChunkStreamer {
     Vector2 current_chunk_coords;

@@ -1,12 +1,9 @@
-#ifndef CHUNK
-#define CHUNK
+#ifndef CHUNK_H
+#define CHUNK_H
 
-#include "../../../../third_party/include/raylib.h"
-#include "entity/entity_definition/entity_definition.h"
+#include "raylib.h"
 #include "tile/tile.h"
-#include "tile/tile_definition/tile_definition.h"
 #include "entity/entity.h"
-#include <stdlib.h>
 
 #define CHUNK_SIZE 16
 #define TILE_COUNT (CHUNK_SIZE * CHUNK_SIZE)
@@ -28,6 +25,7 @@ void set_tile(Chunk *chunk, Vector2 tile_coords, TILES tile_type);
 
 Entity *get_entity(Chunk *chunk, Vector2 entity_coords);
 void set_entity(Chunk *chunk, Vector2 entity_coords, ENTITY entity_type);
+void delete_entity(Chunk *chunk, Vector2 entity_coords);
 
 void dispose_chunk(Chunk *chunk);
 

@@ -1,6 +1,4 @@
 #include "chunk.h"
-#include "entity/entity.h"
-#include "tile/tile.h"
 #include <stdlib.h>
 
 void render_chunk_tiles(Chunk *chunk, Texture2D *tile_atlas) {
@@ -44,15 +42,28 @@ void set_entity(Chunk *chunk, Vector2 entity_coords, ENTITY entity_type) {
         };
         chunk->entity_capacity *= 2;
     }
-    chunk->entities[chunk->entity_count].collision_box =
-        (Rectangle){entity_coords.x - 64,
-                    entity_coords.y - 64,
-                    64,
+    chunk->entities[chunk->entity_count].interact_box =
+        (Rectangle){entity_coords.x,
+                    entity_coords.y,
+                    48,
                     64
     };
     chunk->entities[chunk->entity_count].entity_coords = entity_coords;
     chunk->entities[chunk->entity_count].entity_definition.entity_type = entity_type;
     chunk->entity_count++;
+}
+
+void delete_entity(Chunk *chunk, Vector2 entity_coords) {
+    for (int i = 0; i < chunk->entity_count; i++) {
+        Entity entity = chunk->entities[i];
+        if (entity.entity_coords.x == entity_coords.x && entity.entity_coords.y == entity_coords.y) {
+            for (int j = i; j < chunk->entity_count - 1; j++) {
+                chunk->entities[j] = chunk->entities[j + 1];
+            }
+            chunk->entity_count--;
+            return;
+        }
+    }
 }
 
 void dispose_chunk(Chunk *chunk) {

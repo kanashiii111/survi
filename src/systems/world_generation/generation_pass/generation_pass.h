@@ -2,7 +2,6 @@
 #define GENERATION_PASS_H
 
 #include "../chunk/chunk.h"
-#include "../../../../third_party/include/FastNoiseLite.h"
 #include "../world_config/world_config.h"
 
 static const float WATER_THRESHOLD = -0.1;

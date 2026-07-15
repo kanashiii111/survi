@@ -4,7 +4,8 @@
 #include "../game_context/game_context.h"
 #include "../../systems/world_generation/world_config/world_config.h"
 #include "../../systems/world_generation/chunk/chunk.h"
-#include "../../entities/player/player.h"
+
+typedef struct Player Player;
 
 #define RENDER_DISTANCE 2
 #define MAX_CHUNKS ((2 * RENDER_DISTANCE + 1)*(2 * RENDER_DISTANCE + 1))
