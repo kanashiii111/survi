@@ -1,4 +1,6 @@
 #include "chunk_streamer.h"
+#include "../../managers/world_manager/world_manager.h"
+#include "raymath.h"
 
 void init_cs(GameContext *gc, WorldManager *wm, ChunkStreamer *cs, Player *player) {
     cs->current_chunk_coords = player_pos_to_chunk_coords(player);

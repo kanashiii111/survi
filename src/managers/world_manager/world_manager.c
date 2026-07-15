@@ -1,8 +1,8 @@
 #include "world_manager.h"
-
+#include "../../entities/player/player.h"
 #include <stdlib.h>
 #include <math.h>
-#include "../../systems/world_generation/generation_pass/generation_pass.h"
+#include "src/systems/world_generation/generation_pass/generation_pass.h"
 
 void create_chunk(GameContext *gc, WorldManager* wm, Vector2 chunk_coords){
     for (unsigned int i = 0; i < wm->rendered_chunks_count; i++) {
@@ -104,8 +104,10 @@ Chunk* get_chunk(WorldManager* wm, Vector2 chunk_coords) {
 };
 
 Vector2 player_pos_to_chunk_coords(Player *player) {
-    float screenX = player->camera->target.x;
-    float screenY = player->camera->target.y;
+    // float screenX = player->camera->target.x;
+    // float screenY = player->camera->target.y;
+    float screenX = (float)player->position.x;
+    float screenY = (float)player->position.y;
     float tileX = screenX / (float)TILE_WIDTH + screenY / (float)TILE_HEIGHT;
     float tileY = screenY / (float)TILE_HEIGHT - screenX / (float)TILE_WIDTH;
     return (Vector2){ floorf(tileX / (float)CHUNK_SIZE), floorf(tileY / (float)CHUNK_SIZE) };

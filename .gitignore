@@ -2,3 +2,4 @@ build/
 assets/
 *.txt
 *.pdf
+*.json

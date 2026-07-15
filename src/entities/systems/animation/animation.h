@@ -1,8 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "../../../../third_party/include/raylib.h"
-#include <stdlib.h>
+#include "raylib.h"
 
 typedef struct Animation {
     Texture2D atlas;

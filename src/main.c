@@ -1,5 +1,5 @@
 #define FNL_IMPL
-#include "../third_party/include/raylib.h"
+#include "raylib.h"
 #include "entities/player/player.h"
 #include "entities/cat/cat.h"
 #include "managers/game_context/game_context.h"
@@ -8,6 +8,8 @@
 #include "systems/world_generation/world_config/world_config.h"
 #include <stdlib.h>
 
+bool DEBUG = false;
+
 int main(void) {
 
     // INIT WINDOW
@@ -15,7 +17,7 @@ int main(void) {
     const int screenWidth = 1280;
     const int screenHeight = 960;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Survi");
 
     SetTargetFPS(60);
 
@@ -58,9 +60,11 @@ int main(void) {
 
     // Main game loop
     while (!WindowShouldClose()) {
+        if (IsKeyPressed(KEY_G)) DEBUG = !DEBUG;
+
         // Update
 
-        process_player(player);
+        process_player(player, &wm);
         process_cs(&gc, &wm, &cs, player);
 
         // Render to the texture
@@ -76,32 +80,19 @@ int main(void) {
             ClearBackground(BLANK);
             BeginMode2D(*player->camera);
                 wm_render_entities(&gc, &wm);
+                if (DEBUG) {
+                    draw_interact_debug(player, &wm);
+                    draw_mouse_pos_debug(player);
+                    draw_player_pos_debug(player);
+                }
             EndMode2D();
         EndTextureMode();
 
         // Draw to screen
         BeginDrawing();
-
             ClearBackground(BLANK);
-
-            //BeginMode2D(*player->camera);
-
             DrawTextureRec(tiles.texture, (Rectangle){0, 0, tiles.texture.width, -tiles.texture.height}, (Vector2) {0, 0}, WHITE);
             DrawTextureRec(entities.texture, (Rectangle){0, 0, entities.texture.width, -entities.texture.height}, (Vector2) {0, 0}, WHITE);
-            // BeginMode2D(*player->camera);
-            //     wm_render_entities(&gc, &wm);
-            // EndMode2D();
-                // draw_chunks_tiles();
-                // draw_chunks_entities();
-                // draw_player();
-
-                // render_chunks(&gc, &wm);
-                // render_player(player);
-                // render_cat(&cat);
-
-            //EndMode2D();
-
-
         EndDrawing();
     }
 

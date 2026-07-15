@@ -1,4 +1,6 @@
 #include "generation_pass.h"
+#include "FastNoiseLite.h"
+#include <stdlib.h>
 
 void generate_terrain(Chunk* chunk, WorldConfig* config) {
     for (int x = 0; x < CHUNK_SIZE; x++) {

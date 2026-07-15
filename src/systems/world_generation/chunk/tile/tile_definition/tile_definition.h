@@ -1,7 +1,7 @@
-#ifndef TILE_DEFINITION
-#define TILE_DEFINITION
+#ifndef TILE_DEFINITION_H
+#define TILE_DEFINITION_H
 
-#include "../../../../../../third_party/include/raylib.h"
+#include <stdbool.h>
 
 typedef enum TILES {
     EMPTY = -1,

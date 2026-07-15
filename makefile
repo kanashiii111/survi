@@ -5,7 +5,7 @@ SRCDIR  = .
 BUILDDIR = build
 OBJDIR  = $(BUILDDIR)/obj
 
-CFLAGS  = -I. -Iinclude
+CFLAGS  = -I. -Ithird_party/include -Isrc -MMD -MP
 LDFLAGS = -Lthird_party/lib -lraylib -lgdi32 -lwinmm
 
 SOURCES = \
