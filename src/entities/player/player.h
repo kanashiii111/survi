@@ -43,12 +43,12 @@ void render_player(Player *player);
 
 void dispose_player(Player *player);
 
-// util
+// <----------------UTIL---------------->
 
 bool can_interact(Player *player, Entity *entity);
 Entity *get_interacted_entity(Player *player, WorldManager *wm);
 
-// debug
+// <----------------DEBUG---------------->
 
 void draw_interact_debug(Player *player, WorldManager *wm);
 void draw_player_pos_debug(Player *player);

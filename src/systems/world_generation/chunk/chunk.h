@@ -18,8 +18,6 @@ typedef struct Chunk {
 
 void render_chunk_tiles(Chunk *chunk, Texture2D *tile_atlas);
 
-// UTIL
-
 Tile *get_tile(Chunk *chunk, Vector2 tile_coords);
 void set_tile(Chunk *chunk, Vector2 tile_coords, TILES tile_type);
 

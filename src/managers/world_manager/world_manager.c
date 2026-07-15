@@ -32,7 +32,7 @@ int compare_chunks(const void *a, const void *b) {
 }
 
 int compare_entity_refs(const void *entity_a, const void *entity_b) {
-    return ((struct EntityRef*)entity_a)->depth - ((struct EntityRef*)entity_b)->depth; // по возрастанию
+    return ((struct EntityRef*)entity_a)->depth - ((struct EntityRef*)entity_b)->depth;
 }
 
 void wm_render_tiles(GameContext *gc, WorldManager* wm) {
@@ -43,7 +43,7 @@ void wm_render_tiles(GameContext *gc, WorldManager* wm) {
 }
 
 void wm_render_entities(GameContext *gc, WorldManager *wm) {
-    int entity_count = 1; // 1 из за игрока
+    int entity_count = 1;
     for (int i = 0; i < wm->rendered_chunks_count; i++) {
         entity_count += wm->rendered_chunks[i].entity_count;
     }
@@ -104,8 +104,6 @@ Chunk* get_chunk(WorldManager* wm, Vector2 chunk_coords) {
 };
 
 Vector2 player_pos_to_chunk_coords(Player *player) {
-    // float screenX = player->camera->target.x;
-    // float screenY = player->camera->target.y;
     float screenX = (float)player->position.x;
     float screenY = (float)player->position.y;
     float tileX = screenX / (float)TILE_WIDTH + screenY / (float)TILE_HEIGHT;

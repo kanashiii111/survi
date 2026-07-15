@@ -8,6 +8,8 @@
 #include "systems/world_generation/world_config/world_config.h"
 #include <stdlib.h>
 
+// #TODO : entity.c : fix interact_box order, trees who drawn lower should be interacted with first
+
 bool DEBUG = false;
 
 int main(void) {

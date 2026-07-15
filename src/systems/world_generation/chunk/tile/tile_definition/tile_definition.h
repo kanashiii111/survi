@@ -5,9 +5,9 @@
 
 typedef enum TILES {
     EMPTY = -1,
-    GRASS, // 0
-    DIRT, // 1
-    WATER // 2
+    GRASS,
+    DIRT,
+    WATER
 } TILES;
 
 typedef struct TileDefinition {
